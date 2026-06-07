@@ -63,13 +63,19 @@
 
     /* ── HERO ── */
     .hero {
+      position: relative;
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       padding: 120px 48px 80px;
       gap: 64px;
+      background: linear-gradient(90deg, rgba(247,244,239, 1) 30%, rgba(247,244,239, 0.8) 60%, rgba(247,244,239, 0.2) 100%), url('hero.png') center/cover no-repeat;
     }
+
+    /* Scroll reveal class */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
     .hero-left { animation: fadeUp 0.8s 0.2s ease both; }
 
@@ -378,6 +384,22 @@
     .testi-name { font-size: 13px; font-weight: 500; }
     .testi-since { font-size: 11px; color: var(--light); }
 
+    /* ── MEET THE DOCTOR ── */
+    .doctor-section { padding: 100px 48px; max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
+    .doctor-img { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-lg); border: 4px solid white; }
+    .doctor-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; margin-bottom: 8px; }
+    .doctor-info .creds { font-size: 13px; color: var(--accent); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .doctor-info p { font-size: 16px; color: var(--mid); line-height: 1.7; margin-bottom: 24px; }
+
+    /* ── SMILE GALLERY ── */
+    .gallery-section { padding: 100px 48px; background: white; text-align: center; }
+    .gallery-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; margin-bottom: 48px; }
+    .gallery-grid { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .gallery-item { position: relative; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+    .gallery-item img { width: 400px; height: 300px; object-fit: cover; transition: transform 0.4s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-label { position: absolute; bottom: 20px; left: 20px; background: rgba(255,255,255,0.9); padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 500; }
+
     /* ── CTA SECTION ── */
     .cta-section {
       background: var(--accent); padding: 80px 48px;
@@ -581,7 +603,7 @@
 </div>
 
 <!-- WHY -->
-<section class="why">
+<section class="why reveal">
   <div class="section-label">Why Patients Choose Us</div>
   <h2>Dentistry that respects your time</h2>
   <div class="why-grid">
@@ -604,7 +626,7 @@
 </section>
 
 <!-- SERVICES -->
-<section class="services-section">
+<section class="services-section reveal">
   <div class="services-inner">
     <div class="section-label">Our Services</div>
     <h2>Everything your smile needs</h2>
@@ -620,7 +642,7 @@
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials">
+<section class="testimonials reveal">
   <div class="section-label">Patient Reviews</div>
   <h2>What our patients say</h2>
   <div class="testi-grid">
@@ -642,18 +664,60 @@
   </div>
 </section>
 
+<!-- MEET DOCTOR -->
+<section class="doctor-section reveal">
+  <img src="doctor.png" alt="Dr. Smith" class="doctor-img" />
+  <div class="doctor-info">
+    <h2>Dr. Sarah Smith</h2>
+    <div class="creds">DMD, Cosmetic Specialist</div>
+    <p>With over 15 years of experience in aesthetic and general dentistry, Dr. Smith believes in a gentle, patient-first approach. Her goal is to make every visit as comfortable and stress-free as a day at the spa.</p>
+    <p>When she isn't transforming smiles, she enjoys hiking and painting landscapes.</p>
+  </div>
+</section>
+
+<!-- SMILE GALLERY -->
+<section class="gallery-section reveal">
+  <div class="section-label">Real Results</div>
+  <h2>Before & After Gallery</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="smile.png" alt="Teeth Whitening" />
+      <div class="gallery-label">Professional Whitening</div>
+    </div>
+    <div class="gallery-item">
+      <img src="smile.png" alt="Veneers" />
+      <div class="gallery-label">Custom Veneers</div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
-<section class="cta-section">
+<section class="cta-section reveal">
   <h2>Ready for a better dental experience?</h2>
   <p>New patients welcome. No referral needed. Book online in under 2 minutes.</p>
   <button class="btn-cta-white" onclick="document.querySelector('.booking-card').scrollIntoView({behavior:'smooth'})">Book Your First Visit →</button>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Bright<span>Smile</span> Dental</div>
-  <div>123 Main Street, Suite 100 · (555) 000-1234</div>
-  <div>© 2026 BrightSmile Dental. All rights reserved.</div>
+<footer style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: start; text-align: left;">
+  <div>
+    <div class="footer-logo" style="margin-bottom: 16px;">Bright<span>Smile</span> Dental</div>
+    <p style="margin-bottom: 8px;">123 Main Street, Suite 100<br>Cityville, ST 12345</p>
+    <p>Phone: (555) 000-1234<br>Email: hello@brightsmile.com</p>
+    <div style="margin-top: 24px;">© 2026 BrightSmile Dental. All rights reserved.</div>
+  </div>
+  <div>
+    <h4 style="color: white; margin-bottom: 16px; font-weight: 500;">Hours of Operation</h4>
+    <p style="margin-bottom: 8px;">Mon - Fri: 8:00 AM - 6:00 PM</p>
+    <p style="margin-bottom: 8px;">Saturday: 9:00 AM - 2:00 PM</p>
+    <p>Sunday: Closed</p>
+  </div>
+  <div>
+    <h4 style="color: white; margin-bottom: 16px; font-weight: 500;">Location</h4>
+    <div style="width: 100%; height: 120px; background: rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+      [ Interactive Map Widget ]
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -741,6 +805,20 @@
     document.getElementById('panel5').classList.add('active');
     document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.classList.add('done'); });
   }
+  // Scroll Reveal Animations
+  function reveal() {
+    var reveals = document.querySelectorAll('.reveal');
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 100;
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add('active');
+      }
+    }
+  }
+  window.addEventListener('scroll', reveal);
+  reveal(); // Trigger on load
 </script>
 </body>
 </html>
